@@ -4,28 +4,23 @@ const { roles } = require("../config/roles");
 
 const userSchema = mongoose.Schema(
   {
-    name: {
+    username: {
       type: String,
       required: true,
       trim: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-      lowercase: true,
     },
     password: {
       type: String,
       required: true,
       trim: true,
-      minlength: 8,
+    },
+    branchId: {
+      type: String,
     },
     role: {
       type: String,
-      enum: roles,
-      default: "user",
+      enum: Object.keys(roles),
+      default: roles.customer,
     },
   },
   {
@@ -33,8 +28,8 @@ const userSchema = mongoose.Schema(
   }
 );
 
-userSchema.statics.isEmailTaken = async function (email) {
-  const user = await this.findOne({ email });
+userSchema.statics.isUserNameTaken = async function (username) {
+  const user = await this.findOne({ username });
   return !!user;
 };
 

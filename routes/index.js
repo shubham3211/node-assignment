@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authRoute = require("./authRoutes");
-const productRoutes = require("./productRoutes");
+const userNotificationRoutes = require("./userNotificationRoutes");
 
 const defaultRoutes = [
   {
@@ -9,8 +9,8 @@ const defaultRoutes = [
     route: authRoute,
   },
   {
-    path: "/product",
-    route: productRoutes,
+    path: "/user-notifications",
+    route: userNotificationRoutes,
   },
 ];
 

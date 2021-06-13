@@ -2,10 +2,10 @@ const httpStatus = require("http-status");
 const ApiError = require("../utils/ApiError");
 const userService = require("../services/userService");
 
-const loginUserWithEmailAndPassword = async (email, password) => {
-  const user = await userService.getUserByEmail(email);
+const loginUserWithEmailAndPassword = async (username, password) => {
+  const user = await userService.getUserByUserName(username);
   if (!user || !(await user.isPasswordMatch(password))) {
-    throw new ApiError(httpStatus.UNAUTHORIZED, "Incorrect email or password");
+    throw new ApiError(httpStatus.UNAUTHORIZED, "Incorrect username or password");
   }
   return user;
 };

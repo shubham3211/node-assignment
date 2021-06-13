@@ -1,4 +1,7 @@
 const authController = require("./authController");
-const productController = require("./productController");
+const userNotificationController = require("./userNotificationController");
 
-module.exports = { authController, productController };
+module.exports = {
+  authController,
+  userNotificationController,
+};

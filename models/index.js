@@ -1,4 +1,4 @@
 const User = require("./user.model");
-const Product = require("./product.model");
+const Notification = require("./notification.model");
 
-module.exports = { User, Product };
+module.exports = { User, Notification };

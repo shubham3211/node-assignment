@@ -6,7 +6,6 @@ const compression = require("compression");
 const cors = require("cors");
 const morgan = require("./config/morgan");
 const routes = require("./routes");
-
 const app = express();
 app.use(morgan.successHandler);
 app.use(morgan.errorHandler);

@@ -1,18 +1,26 @@
 const httpStatus = require("http-status");
+const logger = require("../config/logger");
 const { User } = require("../models");
+var ObjectId = require("mongodb").ObjectId;
 
 const ApiError = require("../utils/ApiError");
 
 const createUser = async (userBody) => {
-  if (await User.isEmailTaken(userBody.email)) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Email already taken");
+  if (await User.isUserNameTaken(userBody.username)) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Username already taken");
   }
   const user = await User.create(userBody);
   return user;
 };
 
-const getUserByEmail = async (email) => {
-  return User.findOne({ email });
+const getUserByUserName = async (username) => {
+  return User.findOne({ username });
 };
 
-module.exports = { createUser, getUserByEmail };
+const getUsersFromBranches = async (branchIds) => {
+  return await User.find({
+    branchId: { $in: branchIds },
+  });
+};
+
+module.exports = { createUser, getUserByUserName, getUsersFromBranches };
